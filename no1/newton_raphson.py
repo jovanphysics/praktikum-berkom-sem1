@@ -48,7 +48,7 @@ while True:
     x_new = x - (val / grad)
     print(f'Iterasi ke-{k} --> Nilai x: {x_new:.6f}    Gradien: {grad:.6f}')
 
-    if absol(x_new - x) < epsilon:
+    if (absol(x_new - x) < epsilon) and (absol(val) < epsilon):
         print(f'Akar ditemukan: {x_new:.6f}')
         print(f'Jumlah iterasi: {k}')
         break
