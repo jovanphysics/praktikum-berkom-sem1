@@ -14,6 +14,7 @@
       ]
     }
   ],
+  
   "latex-workshop.latex.tools": [
     {
       "name": "latexmk",
@@ -23,11 +24,9 @@
         "-interaction=nonstopmode",
         "-file-line-error",
         "-pdf",
-        // Pindahkan file sampah ke folder .build
         "-auxdir=%DIR%/.build",
-        // Setelah selesai, salin file PDF hasil compile kembali ke root folder proyek
-        "-jobname=laporan-16026-295-380-060-055.pdf",
-        "-generated-exts=aux,idx,ind,lof,lot,out,toc,acn,acr,alg,glg,glo,gls,ist,fls,log,fdb_latexmk",
+        "-outdir=%DIR%",
+        "-jobname=laporan-16026-295-380-060-055",
         "%DOC%"
       ],
       "env": {}

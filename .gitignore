@@ -214,4 +214,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Latex compiler files
 !*.pdf
+*.synctex.gz
