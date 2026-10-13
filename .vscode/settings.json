@@ -26,7 +26,7 @@
         // Pindahkan file sampah ke folder .build
         "-auxdir=%DIR%/.build",
         // Setelah selesai, salin file PDF hasil compile kembali ke root folder proyek
-        "-jobname=laporan.pdf",
+        "-jobname=laporan-16026-295-380-060-055.pdf",
         "-generated-exts=aux,idx,ind,lof,lot,out,toc,acn,acr,alg,glg,glo,gls,ist,fls,log,fdb_latexmk",
         "%DOC%"
       ],
