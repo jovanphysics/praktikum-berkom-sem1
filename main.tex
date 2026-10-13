@@ -1,9 +1,7 @@
 \documentclass[a4paper, 12pt]{article}
-\author{Jovan Nathaniel Permana (16026295), Abira Mutia Salsabila (16026060), Qamila Annur Firdausi (16026380), Ezra Hadyan Wicaksono (16026055)}
 \usepackage{listings}
 \usepackage{xcolor}
-\usepackage{graphicx} % Paket untuk memasukkan gambar
-\title{Laporan Proyek Berkom}
+\usepackage{graphicx} 
 \raggedright
 \lstset{
     language=Python,                
@@ -16,28 +14,23 @@
     stepnumber=1,                   
     breaklines=true,                
     frame=single,                   
-    % --- TAMBAHKAN 3 BARIS INI UNTUK MENGHILANGKAN SIMBOL ␣ ---
-    showspaces=false,               % Menghilangkan simbol spasi di spasi umum
-    showstringspaces=false,         % Menghilangkan simbol spasi di dalam string/komentar
-    showtabs=false,                 % Menghilangkan simbol spasi pada tab
+    showspaces=false,               
+    showstringspaces=false,         
+    showtabs=false,                 
 }
 
 \lstdefinestyle{gayaOutput}{
-    language=bash,   % Menggunakan teks biasa
-    numbers=none,         % Tidak ada nomor baris
-    frame=shadowbox,      % Bingkai kotak berbayang agar beda dengan kode
-    backgroundcolor=\color{gray!10}, % Memberi latar belakang abu-abu tipis
+    language=bash,   
+    numbers=none,         
+    frame=shadowbox,      
+    backgroundcolor=\color{gray!10}, 
     basicstyle=\ttfamily\small\color{black},
 }
 \renewcommand{\lstlistingname}{Kode}
 \begin{document}
-\maketitle
-Ini adalah file utama kelompok kita.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.5\textwidth]{logo.jpg}
-    \label{fig:logo}
-\end{figure}
-
+\input{cover.tex}
+\newpage
+\input{no1/no1.tex}
+\input{no2/no2.tex}
+\input{no3/no3.tex}
 \end{document}

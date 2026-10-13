@@ -1,11 +1,11 @@
 {
-  // 1. Otomatis compile saat file .tex disimpan
+  
   "latex-workshop.latex.autoBuild.run": "onSave",
 
-  // 2. Memindahkan file aux/log/sampah ke folder terpisah (.build)
+  
   "latex-workshop.latex.outDir": "%DIR%/.build",
 
-  // 3. Konfigurasi resep dan tool kompilasi
+  
   "latex-workshop.latex.recipes": [
     {
       "name": "latexmk",
