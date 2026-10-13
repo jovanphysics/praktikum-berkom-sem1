@@ -1,1 +1,1 @@
-"""labirin"""
+"""labirin (dengan Subprogram)"""

@@ -1,1 +1,1 @@
-"""Pinjam Buku"""
+"""Pinjam Buku (dengan Subprogram)"""

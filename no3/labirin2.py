@@ -1,0 +1,1 @@
+"""labirin (tanpa Subprogram)"""
