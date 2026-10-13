@@ -1,1 +1,36 @@
 \subsection{Algoritma Newton-Raphson}
+\subsubsection{Dekomposisi}
+Algoritma Newton-Raphson sebenarnya adalah algoritma optimasi yang bersifat iteratif,
+dengan tujuan utama untuk mencari akar-akar/titik potong sebuah fungsi $f(x)$ dengan sumbu $x$.
+Dalam proyek ini, algoritma Newton-Raphson difokuskan untuk mencari akar-akar dari sebuah polinom dengan derajat tertentu,
+sesuai masukan dari pengguna (\textit{user}).
+Melalui prinsip dekomposisi (pemecahan suatu masalah dengan skala besar menjadi skala yang lebih kecil),
+algoritma Newton-Raphson untuk mencari akar-akar sebuah fungsi polinom dapat dipecah menjadi beberapa tugas berikut.
+\begin{enumerate}
+    \item Menginput derajat polinom ($N$), nilai koefisien-koefisiennya, serta nilai tebakan awal ($x_0$) dari user.
+    \item Untuk nilai tebakan awal $x = x_0$ yang diberikan, hitung nilai fungsi $f(x_0)$ beserta turunannya, yaitu $f'(x_0)$.
+    \item Nilai $x$ diperbarui secara terus-menerus melalui prosedur iteratif dengan persamaan
+    \begin{equation}
+        x_{n+1} \leftarrow x_n - \frac{f(x_n)}{f'(x_n)} \label{eq:Newton-Raphson}
+    \end{equation}
+    hingga nilai \textit{error} yang terjadi dalam penentuan akar menjadi tidak signifikan atau berada di bawah ambang batas tertentu.
+    \item Jika $f'(x) = 0$ pada suatu tahap tertentu atau perulangan pada langkah 3 tidak dapat selesai (\textit{infinite loop}), 
+    maka proses perhitungan akar gagal dilakukan.
+\end{enumerate}
+\subsubsection{Pengenalan Pola}
+Algoritma Newton-Raphson memiliki pola yang mirip dengan algoritma optimasi, 
+yaitu algoritma yang menekankan perhitungan matematika secara iteratif (berulang) untuk mencapai suatu tujuan.
+Dalam algoritma Newton-Raphson, persamaan (\ref{eq:Newton-Raphson}) dijalankan secara berulang-ulang untuk mencapai suatu tujuan, yaitu akar persamaan polinom. 
+Selama perulangan tersebut, nilai $x$ akan terus diperbarui (\textit{update}) hingga error dalam pencarian akar menjadi tidak signifikan atau lebih kecil dari ambang batas tertentu.
+\subsubsection{Abstraksi}
+Algoritma Newton-Raphson membutuhkan beberapa informasi penting, yaitu:
+\begin{enumerate}
+    \item Derajat polinom $N$.
+    \item Koefisien-koefisien pada polinom.
+    \item Nilai tebakan awal $x_0$.
+\end{enumerate}
+Dalam proyek ini, derajat polinom $N$ disimpan di dalam variabel bertipe \lstinline|int|, sementara nilai tebakan awal $x_0$ disimpan di dalam variabel bertipe \lstinline|float|.
+Nilai-nilai koefisien pada polinom disimpan di dalam sebuah array \lstinline|float| yang berukuran $N+1$. 
+
+
+
