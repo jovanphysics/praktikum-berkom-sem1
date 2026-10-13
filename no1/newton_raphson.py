@@ -1,5 +1,5 @@
 import time
-""" Newton Raphson """
+""" Newton Raphson (dengan subprogram) """
 
 # definisi fungsi
 def function(x, coefs):
