@@ -56,4 +56,51 @@ elif (pointer[0] == (N-1)) and (pointer[1] == (N-1)):
 elif (0 < pointer[0] < (N-1)) and (pointer[1] == 0):
     direction = [0,1,1,1]
 elif (0 < pointer[0] < (N-1)) and (pointer[1] == (N-1)):
+    direction = [1,1,0,1]
+elif (pointer[0] == 0) and (0 < pointer[1] < (N-1)):
     direction = [1,1,1,0]
+elif (pointer[0] == (N-1)) and (0 < pointer[1] < (N-1)):
+    direction = [1,0,1,1]
+
+while pointer != endpoints[1]:
+    for item in range(4):
+        if direction[item] == 1:
+            avail_dir = item
+            break
+    if avail_dir == 0:
+        pointer[1] += 1
+    elif avail_dir == 1:
+        pointer[0] += 1
+    elif avail_dir == 2:
+        pointer[1] -= 1
+    elif avail_dir == 3:
+        pointer[0] -= 1
+
+    print(f'Pointer melewati x: {pointer[0]}, y: {pointer[1]}')
+
+    if (pointer[0] == 0) and (pointer[1] == 0):
+        direction = [0,1,1,0]
+    elif (pointer[0] == 0) and (pointer[1] == N-1):
+        direction = [1,1,0,0]
+    elif (pointer[0] == (N-1)) and (pointer[1] == 0):
+        direction = [0,0,1,1]
+    elif (pointer[0] == (N-1)) and (pointer[1] == (N-1)):
+        direction = [1,0,0,1]
+    elif (0 < pointer[0] < (N-1)) and (pointer[1] == 0):
+        direction = [0,1,1,1]
+    elif (0 < pointer[0] < (N-1)) and (pointer[1] == (N-1)):
+        direction = [1,1,0,1]
+    elif (pointer[0] == 0) and (0 < pointer[1] < (N-1)):
+        direction = [1,1,1,0]
+    elif (pointer[0] == (N-1)) and (0 < pointer[1] < (N-1)):
+        direction = [1,0,1,1]
+    elif matrix[pointer[1]+1][pointer[0]] == 0:
+        direction = [0,1,1,1]
+    elif matrix[pointer[1]-1][pointer[0]] == 0:
+        direction = [1,1,0,1]
+    elif matrix[pointer[1]][pointer[0]+1] == 0:
+        direction = [1,0,1,1]
+    elif matrix[pointer[1]][pointer[0]-1] == 0:
+        direction = [1,1,1,0]
+    else:
+        direction = [1,1,1,1]
