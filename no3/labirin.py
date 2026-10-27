@@ -163,7 +163,7 @@ while pointer != endpoints[1]:
                     break
             j -= 1
 
-    if (change_clockwise % 3) == 0:
+    if (change_clockwise % (4*N)) == 0:
         clockwise = not clockwise
         
 print(f'Titik x: {pointer[0]}, y: {pointer[1]} berhasil dilewati')
