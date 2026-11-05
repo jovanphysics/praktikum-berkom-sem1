@@ -1,9 +1,20 @@
 \subsection{Algoritma Labirin}
 \subsubsection{Dekomposisi}
-% tulis teks di sini
-
+Algoritma labirin merupakan algoritma berbasis matriks dan pencarian berdasarkan arah. Dalam proyek ini, program di \textit{setting} untuk menentukan titik awal perjalanan labirin terlebih dahulu kemudian \textit{pointer} bergerak (lewat) di jalur yang ditentukan dengan syarat khusus berdasarkan arah Utara, Timur, Selatan dan Barat yang kemudian arah putarnya akan berbalik saat jumlah jalannya habis dibagi keliling. Berbasis koordinat, output dari program ini adalah koordinat yang dilewati untuk berhasil mencapai ujung labirin. Melalui dekomposisi arah ini, algoritma labirin dapat dibagi menjadi beberapa tugas besar berikut.
+\begin{enumerate}
+    \item Menginput matriks labirin (yang menggambarkan jalan (1) dan dinding labirin (0)), titik awal, batas gerak, \textit{pointer}, dan besar matriks tersebut.
+    \item Selanjutnya, program akan mencari titik awal yang akan menjadi \textit{pointer} dan akan bergerak ketika ada jalan (angka 1)  berdasarkan arah Utara, Timur, Selatan dan Barat.
+    \item Program didesain dengan aturan \textit{forbidden move} agar \textit{pointer} tidak bolak balik di koordinat yang sudah pernah dilewati dan terus maju mencari jalan yang lain.
+    \item \textit{Pointer} berubah arah menjadi Barat, Selatan, Timur, Utara ketika jalan buntu atau ada dinding (angka 0) dengan hitungan jumlah langkah habis dibagi keliling labirin.
+    \item Program akan mencatat koordinat langkah yang bisa dilewati lalu menampilkan alur jalan kepada user mulai dari titik awal hingga ujung labirin.
+\end{enumerate}
 \subsubsection{Pengenalan Pola}
-% tulis teks di sini
-
+Algoritma labirin memiliki pola yang mirip seperti \textit{searching algorithm} (spesifiknya \textit{Breadth-First Search}), yaitu algoritma yang menjelajahi titik-titik tetangga terlebih dahulu sebelum lanjut ke langkah selanjutnya. Dalam algoritma labirin, \textit{pointer} melangkah dalam matriks dengan mencari arah mata angin secara jarum jam, dan untuk mencegah \textit{endless loops} maka setiap langkah ke-(sesuai keliling matriks), maka prioritas pencarian dibalik menjadi berlawanan arah jarum jam.
 \subsubsection{Abstraksi}
-% tulis teks di sini
+Algoritma Labirin membutuhkan beberapa informasi penting, yaitu:
+\begin{enumerate}
+    \item Ukuran labirin $N$.
+    \item Representasi labirin dalam bentuk matriks.
+    \item Penentuan awal dan titik akhir dari matriks labirin (\textit{endpoints})
+\end{enumerate}
+Dalam proyek ini, ukuran labirin $N$ disimpan di dalam variabel bertipe \lstinline|int|, sementara representasi labirin dalam bentuk matriks disimpan dalam list dua dimensi yang berukuran $N \times N$. Posisi dari penunjuk koordinatnya (\textit{pointer}) saat menelusuri labirin, arah gerakannya, status sisi, dan riwayat gerakannya disimpan ke dalam struktur list satu dimensi, kemudian program menjalankan proses perulangan secara otomatis untuk mencari jalur dari titik awal hingga mencapai titik akhir yang telah ditentukan sebelumnya dalam labirin.

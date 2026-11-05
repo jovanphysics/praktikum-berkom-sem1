@@ -13,7 +13,21 @@ dimana algoritma pinjam buku dapat dibagi menjadi beberapa tugas besar berikut.
     \item Langkah 2 sampai 3 dilakukan terus-menerus sampai semua peminjam sudah pernah meminjam buku dan buku dikembalikan ke peminjam awal.
 \end{enumerate}
 \subsubsection{Pengenalan Pola}
-% tulis teks di sini
-
+Pola yang umum terjadi pada algoritma DFS dan \textit{backtracking} yang digunakan dalam algoritma pinjam buku adalah
+untuk setiap \textit{node} yang dikunjungi, algoritma selalu mencari \textit{node} berikutnya dengan umur terendah dan tidak pernah ada dalam riwayat kunjungan sebelumnya.
+Pernyataan tersebut menggambarkan bahwa algoritma selalu membuat keputusan terbaik secara lokal (dibuat berdasarkan \textit{node} saat ini) untuk mencapai solusi global (semua orang sudah pernah meminjam buku sesuai dengan graf tiap-tiap orang).
+Hal ini merupakan salah satu sifat dari \textit{greedy search algorithm}, yaitu algoritma yang selalu mengoptimalkan keputusan terbaik di setiap langkah untuk mencapai suatu solusi global.
+Namun, secara umum, \textit{greedy search algorithm} tidak mempedulikan apakah suatu \textit{node} sudah dikunjungi atau belum.
+Akan tetapi, algoritma pinjam buku harus menjamin bahwa semua orang sudah pernah meminjam buku dan buku dikembalikan ke peminjam awal,
+sehingga \textit{backtracking} menjadi penting dalam kasus ini. 
+Untuk melakukan \textit{backtracking}, digunakan suatu array yang menyimpan histori \textit{node} yang sudah dikunjungi. 
+Array tersebut mula-mula kosong, tetapi seiring berjalannya algoritma dalam menelusuri setiap peminjam,
+array histori \textit{node} tersebut akan ditumpuk dengan \textit{node-node} yang sudah dikunjungi (\textit{stacking}).
+Saat \textit{backtracking}, tumpukan tersebut akan dikeluarkan mulai dari posisi teratas untuk menelusuri kembali peminjam buku sebelumnya dan menjamin bahwa semua peminjam sudah pernah meminjam buku dan buku kembali ke tempat asal.
 \subsubsection{Abstraksi}
-% tulis teks di sini
+Informasi penting yang diperlukan dalam algoritma pinjam buku adalah sebagai berikut.
+\begin{enumerate}
+    \item Matriks ketetanggaan (berukuran $N \times N$, dengan $N$ adalah jumlah total peminjam). Matriks ini direpresentasikan sebagai array 2D bertipe \lstinline|int|.
+    \item Peminjam pertama yang mendapatkan buku, direpresentasikan sebagai index bertipe \lstinline|int|.
+    \item Umur setiap peminjam, disimpan dalam array bertipe \lstinline|int| berukuran $N$.
+\end{enumerate}
