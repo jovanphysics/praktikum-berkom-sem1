@@ -1,4 +1,19 @@
 \subsection{Algoritma Pinjam Buku}
 \subsubsection{Dekomposisi}
+Algoritma pinjam buku merupakan algoritma berbasis teori graf (\textit{graph theory}).
+Hubungan antar peminjam buku dapat direpresentasikan sebagai graf, dimana \textit{nodes}/titik dari graf tersebut adalah peminjam dan \textit{edges}/garis hubungan dari graf tersebut adalah hubungan antar peminjam.
+Graf yang dihasilkan adalah graf siklik (\textit{cyclic graph}, dimana seseorang dapat bergerak dari satu \textit{node} ke \textit{node} lain, lalu kembali memutar ke titik semula) dengan \textit{edge} dua arah.
+Selain itu, faktor umur yang diperhitungkan dalam algoritma pinjam buku (untuk menentukan peminjam berikutnya berdasarkan umur terendah) membuat graf ini menjadi graf berbobot (\textit{weighted graph}).
+Oleh karena itu, dalam algoritma ini, digunakan algoritma DFS (\textit{Depth First Search}) yang disertai dengan \textit{backtracking},
+dimana algoritma pinjam buku dapat dibagi menjadi beberapa tugas besar berikut.
+\begin{enumerate}
+    \item Menginput matriks ketetanggaan (yang menggambarkan hubungan antar peminjam), umur setiap peminjam, dan peminjam pertama yang mendapatkan buku.
+    \item Selanjutnya, melalui matriks ketetanggaan, hubungan antara satu peminjam dengan peminjam lain dapat ditentukan. Apabila terdapat lebih dari satu peminjam, pilih peminjam dengan umur terendah dan prioritaskan peminjam yang belum pernah meminjam buku.
+    \item Jika buku sudah sampai di \textit{node} buntu atau semua peminjam yang berhubungan dengan \textit{node} tersebut sudah pernah meminjam buku sebelumnya, lakukan \textit{backtracking}, yaitu mengembalikan buku ke peminjam sebelumnya.
+    \item Langkah 2 sampai 3 dilakukan terus-menerus sampai semua peminjam sudah pernah meminjam buku dan buku dikembalikan ke peminjam awal.
+\end{enumerate}
 \subsubsection{Pengenalan Pola}
+% tulis teks di sini
+
 \subsubsection{Abstraksi}
+% tulis teks di sini
