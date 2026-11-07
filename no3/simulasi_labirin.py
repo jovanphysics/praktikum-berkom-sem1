@@ -1,0 +1,206 @@
+import time
+import turtle
+"""labirin (Simulasi)"""
+# definisi fungsi
+def choose_dir(pointer):
+    if (pointer[0] == 0) and (pointer[1] == 0):
+        direction = [0,1,1,0]
+    elif (pointer[0] == 0) and (pointer[1] == N-1):
+        direction = [1,1,0,0]
+    elif (pointer[0] == (N-1)) and (pointer[1] == 0):
+        direction = [0,0,1,1]
+    elif (pointer[0] == (N-1)) and (pointer[1] == (N-1)):
+        direction = [1,0,0,1]
+    elif (0 < pointer[0] < (N-1)) and (pointer[1] == 0):
+        direction = [0,1,1,1]
+    elif (0 < pointer[0] < (N-1)) and (pointer[1] == (N-1)):
+        direction = [1,1,0,1]
+    elif (pointer[0] == 0) and (0 < pointer[1] < (N-1)):
+        direction = [1,1,1,0]
+    elif (pointer[0] == (N-1)) and (0 < pointer[1] < (N-1)):
+        direction = [1,0,1,1]
+    else:
+        direction = [1,1,1,1]
+    return direction
+def ruang_layar(x,y,N):
+    xprime = (360//N)*(x-3)
+    yprime = (360//N)*(-y+3)
+    koordinat_layar = [xprime, yprime]
+    return koordinat_layar
+# program utama
+# input
+N = int(input("Masukkan ukuran labirin: "))
+matrix = []
+visual_labirin = []
+for i in range(N):
+    col = [0]*N
+    matrix += [col]
+    visual_labirin += [col]
+
+for y in range(N):
+    for x in range(N):
+        val = int(input(f'Apakah koordinat ({x},{y}) bisa dilewati (1) atau tidak (0): '))
+        matrix[y][x] = val
+    print('================================')
+
+# inisialisasi jendela labirin
+layar = turtle.Screen()
+layar.bgcolor("#1a1a1a")
+t = turtle.Turtle()
+t.hideturtle()
+t.penup()
+for y in range(N):
+    for x in range(N):
+        t.goto(ruang_layar(x,y,N)[0], ruang_layar(x,y,N)[1])
+        if matrix[y][x] == 1:
+            t.dot(7, '#25F4EE')
+        else:
+            t.dot(7, '#FE2C55')
+# proses
+start_time = time.perf_counter()
+# inisialisasi pointer dan arahnya
+status_sisi = [[-1,-1], [-1,-1], [-1,-1], [-1,-1]]
+# cari titik awal di sisi atas
+for i in range(N):
+    if matrix[0][i] == 1:
+        status_sisi[0] = [i,0]
+        break
+# cari titik awal di sisi bawah
+for i in range(N):
+    if matrix[N-1][i] == 1:
+        status_sisi[1] = [i,N-1]
+        break
+# cari titik awal di sisi kiri
+for i in range(N):
+    if matrix[i][0] == 1:
+        status_sisi[2] = [0,i]
+        break
+# cari titik awal di sisi kanan
+for i in range(N):
+    if matrix[i][N-1] == 1:
+        status_sisi[3] = [N-1, i]
+        break
+
+# tentukan endpoint
+endpoints = []
+for i in range(4):
+    if status_sisi[i] != [-1,-1]:
+        endpoints += [status_sisi[i]]
+
+# tentukan titik mulai
+pointer = endpoints[0]
+direction = [0,0,0,0]
+avail_move = [0,0,0,0]
+forbidden_move = [0,0,0,0]
+clockwise = True
+change_clockwise = 0
+# jalankan iterasi
+t.goto(ruang_layar(pointer[0],pointer[1],N)[0], ruang_layar(pointer[0],pointer[1],N)[1]) 
+t.pencolor('white')
+t.shape('square')
+t.pensize(5)
+t.showturtle()
+t.pendown()
+while pointer != endpoints[1]:
+    change_clockwise += 1
+    print(f'Titik x: {pointer[0]}, y: {pointer[1]} berhasil dilewati')
+    t.goto(ruang_layar(pointer[0],pointer[1],N)[0], ruang_layar(pointer[0],pointer[1],N)[1])
+    # cek arah yang tersedia
+    direction = choose_dir(pointer)
+    # cek apakah bisa dilewati
+    i = 0
+    while(i < 4):
+        if direction[i] == 1:
+            if (i == 0) and (forbidden_move[i] == 0):
+                bukan_dinding = int(matrix[pointer[1]-1][pointer[0]] == 1)
+                avail_move[i] = bukan_dinding
+            elif (i == 1) and (forbidden_move[i] == 0):
+                bukan_dinding = int(matrix[pointer[1]][pointer[0]+1] == 1)
+                avail_move[i] = bukan_dinding
+            elif (i == 2) and (forbidden_move[i] == 0):
+                bukan_dinding = int(matrix[pointer[1]+1][pointer[0]] == 1)
+                avail_move[i] = bukan_dinding
+            elif (i == 3) and (forbidden_move[i] == 0):
+                bukan_dinding = int(matrix[pointer[1]][pointer[0]-1] == 1)
+                avail_move[i] = bukan_dinding
+        else:
+            avail_move[i] = 0
+        i += 1
+    # Jika jalan buntu
+    if avail_move == [0,0,0,0]:
+        i = 0
+        while(i < 4):
+            if direction[i] == 1:
+                if i == 0:
+                    bukan_dinding = int(matrix[pointer[1]-1][pointer[0]] == 1)
+                    avail_move[i] = bukan_dinding
+                elif i == 1:
+                    bukan_dinding = int(matrix[pointer[1]][pointer[0]+1] == 1)
+                    avail_move[i] = bukan_dinding
+                elif i == 2:
+                    bukan_dinding = int(matrix[pointer[1]+1][pointer[0]] == 1)
+                    avail_move[i] = bukan_dinding
+                else:
+                    bukan_dinding = int(matrix[pointer[1]][pointer[0]-1] == 1)
+                    avail_move[i] = bukan_dinding
+            else:
+                avail_move[i] = 0
+            i += 1  
+
+    # Pilih jalur
+    if clockwise:
+        j = 0
+        while (j < 4):
+            if avail_move[j] == 1:
+                if j == 0:
+                    pointer[1] -= 1
+                    forbidden_move = [0,0,1,0]
+                    break
+                elif j == 1:
+                    pointer[0] += 1
+                    forbidden_move = [0,0,0,1]
+                    break
+                elif j == 2:
+                    pointer[1] += 1
+                    forbidden_move = [1,0,0,0]
+                    break
+                else:
+                    pointer[0] -= 1
+                    forbidden_move = [0,1,0,0]
+                    break
+            j += 1
+    else:
+        j = 3
+        while (j >= 0):
+            if avail_move[j] == 1:
+                if j == 0:
+                    pointer[1] -= 1
+                    forbidden_move = [0,0,1,0]
+                    break
+                elif j == 1:
+                    pointer[0] += 1
+                    forbidden_move = [0,0,0,1]
+                    break
+                elif j == 2:
+                    pointer[1] += 1
+                    forbidden_move = [1,0,0,0]
+                    break
+                else:
+                    pointer[0] -= 1
+                    forbidden_move = [0,1,0,0]
+                    break
+            j -= 1
+
+    if (change_clockwise % (4*N)) == 0:
+        clockwise = not clockwise
+        
+print(f'Titik x: {pointer[0]}, y: {pointer[1]} berhasil dilewati')
+t.goto(ruang_layar(pointer[0],pointer[1],N)[0], ruang_layar(pointer[0],pointer[1],N)[1])
+end_time = time.perf_counter()
+execution_time = end_time - start_time
+print('Labirin Diselesaikan!')
+print(f"Waktu eksekusi: {execution_time:.6f} detik")
+print('Menyimpan screenshot...')
+canvas = turtle.getscreen().getcanvas()
+canvas.postscript(file="no3/ss_labirin.eps")              
+layar.mainloop()

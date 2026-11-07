@@ -22,6 +22,7 @@ for i in range(N):
     umur[i] = val_umur
 
 index_pinjam = int(input('Masukkan index tempat awal buku berada: '))
+# proses
 awal = time.perf_counter()
 sudah_pinjam[index_pinjam] = 1
 riwayat_pinjam += [index_pinjam]
