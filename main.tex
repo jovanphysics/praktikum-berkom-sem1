@@ -4,7 +4,8 @@
 \usepackage{graphicx} 
 \usepackage{epstopdf}
 \usepackage{hyperref}
-\hypersetup{colorlinks=true, urlcolor=blue}
+\definecolor{BiruHex}{HTML}{2332ff}
+\hypersetup{colorlinks=true, allcolors=BiruHex}
 \raggedright
 \lstset{
     language=Python,                
@@ -32,6 +33,9 @@
 \renewcommand{\lstlistingname}{Kode}
 \begin{document}
 \input{cover.tex}
+\newpage
+\renewcommand{\contentsname}{DAFTAR ISI}
+\tableofcontents
 \newpage
 \section{Dasar-dasar Berpikir Komputasional yang Digunakan}
 \input{no1/no1.tex}
