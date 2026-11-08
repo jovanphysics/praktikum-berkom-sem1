@@ -43,6 +43,7 @@ for y in range(N):
         matrix[y][x] = val
     print('================================')
 
+save_fig = input('Simpan hasil simulasi (y/n)? > ')
 # inisialisasi jendela labirin
 layar = turtle.Screen()
 layar.bgcolor("#1a1a1a")
@@ -200,7 +201,8 @@ end_time = time.perf_counter()
 execution_time = end_time - start_time
 print('Labirin Diselesaikan!')
 print(f"Waktu eksekusi: {execution_time:.6f} detik")
-print('Menyimpan screenshot...')
-canvas = turtle.getscreen().getcanvas()
-canvas.postscript(file="no3/ss_labirin.eps")              
+if save_fig.strip().lower() == 'y':
+    print('Menyimpan screenshot...')
+    canvas = turtle.getscreen().getcanvas()
+    canvas.postscript(file="no3/ss_labirin.eps")              
 layar.mainloop()

@@ -56,6 +56,7 @@ ordinat_singgung = []
 epsilon = 1e-4
 k = 0
 max_iter = 1e6
+save_image = input('Simpan hasil simulasi (y/n)? > ')
 # proses iterasi
 start_time = time.perf_counter()
 err = False
@@ -109,5 +110,6 @@ plt.ylabel('y')
 plt.title('Simulasi Algoritma Newton-Raphson')
 plt.grid(True)
 plt.rcParams['axes.linewidth'] = 10
-plt.savefig('no1/ss_newton_raphson.png', dpi=300, edgecolor='none')
+if save_image.strip().lower() == 'y':
+    plt.savefig('no1/ss_newton_raphson.png', dpi=300, edgecolor='none')
 plt.show()

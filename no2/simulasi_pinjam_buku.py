@@ -39,6 +39,7 @@ for i in range(N):
     umur[i] = val_umur
 
 index_pinjam = int(input('Masukkan index tempat awal buku berada: '))
+save_fig = input('Simpan hasil simulasi (y/n)? > ')
 # inisialisasi jendela labirin
 layar = turtle.Screen()
 layar.bgcolor("#1a1a1a")
@@ -97,7 +98,8 @@ while True:
 akhir = time.perf_counter()
 eks = akhir - awal
 print(f'\n\nWaktu eksekusi: {eks} detik.')
-print('Menyimpan screenshot...')
-canvas = turtle.getscreen().getcanvas()
-canvas.postscript(file="no2/ss_pinjam_buku.eps")              
+if save_fig.strip().lower() == 'y':
+    print('Menyimpan screenshot...')
+    canvas = turtle.getscreen().getcanvas()
+    canvas.postscript(file="no2/ss_pinjam_buku.eps")              
 layar.mainloop()
